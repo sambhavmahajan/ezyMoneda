@@ -3,4 +3,7 @@
 enum transactionType {
 	DEBIT, CREDIT
 };
+class Transaction {
+
+};
 #endif
