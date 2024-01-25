@@ -12,5 +12,7 @@ private:
 	size_t _toId;
 	float _amount;
 	transactionType _transactionType;
+public:
+	Transaction(size_t Id, time_t Time, size_t toId, float amount, transactionType type);
 };
 #endif
