@@ -10,6 +10,7 @@ private:
 	time_t _time;
 	size_t _fromId;
 	size_t _toId;
-	float amount;
+	float _amount;
+	transactionType _transactionType;
 };
 #endif
