@@ -45,14 +45,15 @@ bool isValidCreditCard(size_t cardnum)
 }
 int otp(const std::string& name, const std::string& password)
 {
-	int r = std::time(0) % 100000 - OFFSET;
+	int r = (std::time(0)/30) % 100000 + OFFSET;
 	for (char c : name)
 	{
-		r += c;
+		r += static_cast<int> (c^7 + c<<2);
 	}
 	for (char c : password)
 	{
-		r += c;
+		r += static_cast<int> (c ^ 5 + c >> 2);;
 	}
+	r = (r < 0) ? -r : r;
 	return r % 99991;
 }
