@@ -123,6 +123,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Encryption.cpp" />
     <ClCompile Include="MainWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
