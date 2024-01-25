@@ -4,6 +4,7 @@ enum transactionType {
 	DEBIT, CREDIT
 };
 class Transaction {
+	unsigned int id;
 
 };
 #endif
