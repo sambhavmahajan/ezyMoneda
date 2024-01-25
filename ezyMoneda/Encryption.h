@@ -34,6 +34,16 @@ int main() {
     std::string encryptedOriginalPassword = encrypt(originalPassword, encryptionKey);
     std::string encryptedUserPassword = encrypt(userPassword, encryptionKey);
 
-   
+    if (encryptedUserPassword == encryptedOriginalPassword) {
+        std::cout << "Password is correct!" << std::endl;
+    }
+    else {
+        std::cout << "Password is incorrect!" << std::endl;
+    }
+
+
+    return 0;
+}
+
     
 #endif
