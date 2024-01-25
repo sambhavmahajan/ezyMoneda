@@ -6,7 +6,7 @@ enum transactionType {
 };
 class Transaction {
 private:
-	size_t id;
-	time_t time;
+	size_t _id;
+	time_t _time;
 };
 #endif
