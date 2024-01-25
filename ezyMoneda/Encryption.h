@@ -30,7 +30,10 @@ int main() {
     std::cout << "Enter your password: ";
     std::cin >> userPassword;
 
-   
+  
+    std::string encryptedOriginalPassword = encrypt(originalPassword, encryptionKey);
+    std::string encryptedUserPassword = encrypt(userPassword, encryptionKey);
 
+   
     
 #endif
