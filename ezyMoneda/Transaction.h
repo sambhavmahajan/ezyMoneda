@@ -8,5 +8,6 @@ class Transaction {
 private:
 	size_t _id;
 	time_t _time;
+	size_t _fromId;
 };
 #endif
