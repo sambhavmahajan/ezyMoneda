@@ -1,5 +1,7 @@
 #include "authenticator.h"
 #include <cmath>
+#include <ctime>
+#include <string>
 bool isValidCreditCard(size_t cardnum)
 {
 	if (cardnum == 0) {
@@ -39,4 +41,8 @@ bool isValidCreditCard(size_t cardnum)
 	}
 	delete[] arr;
 	return sum % 10 == 0;
+}
+int otp(std::string name, std::string password)
+{
+
 }
