@@ -54,5 +54,5 @@ int otp(std::string& name, std::string& password)
 	{
 		r += c;
 	}
-	return r;
+	return r % 100000;
 }
