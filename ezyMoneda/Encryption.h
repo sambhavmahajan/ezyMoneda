@@ -5,7 +5,7 @@
 #define ENCRYPTIONKEY 90767
 
 std::string encrypt(std::string& password , std::string& key  ){
-    std::string encryptedpassword = "";
+    std::string encryptedPassword = "";
 
     for (size_t i = 0; i < password.length(); ++i) {
         char currentLetter = password[i];
