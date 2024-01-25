@@ -1,6 +1,11 @@
 #ifndef ENCRYPTION_H
 #define ENCRYPTION_H
-enum encryptionType {
-	Symmetric , Asymmetric , Hashing
-};
+#include<iostream>
+#include<string>
+#define ENCRYPTIONKEY 90767
+
+
+
+
+
 #endif
