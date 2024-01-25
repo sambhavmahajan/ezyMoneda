@@ -10,5 +10,12 @@ std::string encryptedpassword = "";
 for (size_t i = 0; i < password.length(); ++i) {
     char currentLetter = password[i];
 
+    char keyLetter = key[i % key.length()];
+    char encryptedLetter = currentLetter ^ keyLetter;
+    encryptedPassword += encryptedLetter;
+}
+return encryptedPassword;
+
+
     
 #endif
