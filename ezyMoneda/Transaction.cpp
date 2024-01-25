@@ -4,3 +4,8 @@ Transaction::Transaction(size_t Id, size_t toId, float amount, transactionType t
 {
 	time(&_time);
 }
+
+size_t Transaction::getValue() const
+{
+	return (_transactionType == CREDIT) ? _amount : -_amount;
+}
