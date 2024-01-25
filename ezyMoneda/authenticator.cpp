@@ -48,11 +48,11 @@ int otp(const std::string& name, const std::string& password)
 	long long r = (std::time(0) / 30) % 100000 + 946;
 	for (char c : name)
 	{
-		r += static_cast<int> (c ^ 3 * c << 2);
+		r *= static_cast<int> (c ^ 3 * c << 2);
 	}
 	for (char c : password)
 	{
-		r += static_cast<int> (c ^ 5 / c >> 2);;
+		r /= static_cast<int> (c ^ 5 / c >> 2);;
 	}
 	long long temp = r;
 	long long temp2 = 0;
