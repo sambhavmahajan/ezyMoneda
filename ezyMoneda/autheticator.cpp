@@ -2,7 +2,7 @@
 #include <cmath>
 #include <ctime>
 #include <string>
-#define somerandomnum 942
+#define OFFSET 942
 bool isValidCreditCard(size_t cardnum)
 {
 	if (cardnum == 0) {
@@ -45,7 +45,7 @@ bool isValidCreditCard(size_t cardnum)
 }
 int otp(std::string& name, std::string& password)
 {
-	int r = std::time(0) % 100000 - somerandomnum;
+	int r = std::time(0) % 100000 - OFFSET;
 	for (char c : name)
 	{
 		r += c;
