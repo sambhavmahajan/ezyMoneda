@@ -9,5 +9,6 @@ private:
 	size_t _id;
 	time_t _time;
 	size_t _fromId;
+	size_t _toId;
 };
 #endif
