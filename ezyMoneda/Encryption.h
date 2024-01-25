@@ -24,9 +24,13 @@ int main() {
     std::cout << "Enter the original password: ";
     std::cin >> originalPassword;
 
-    
-    return 0;
-}
+    std::string encryptionKey = "EncryptionKey";
+
+    std::string userPassword;
+    std::cout << "Enter your password: ";
+    std::cin >> userPassword;
+
+   
 
     
 #endif
