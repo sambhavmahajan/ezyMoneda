@@ -11,11 +11,22 @@ for (size_t i = 0; i < password.length(); ++i) {
     char currentLetter = password[i];
 
     char keyLetter = key[i % key.length()];
+
+
     char encryptedLetter = currentLetter ^ keyLetter;
+
     encryptedPassword += encryptedLetter;
 }
 return encryptedPassword;
 
+int main() {
+    std::string originalPassword;
+    std::cout << "Enter the original password: ";
+    std::cin >> originalPassword;
+
+    
+    return 0;
+}
 
     
 #endif
