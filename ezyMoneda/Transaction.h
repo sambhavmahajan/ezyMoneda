@@ -15,6 +15,5 @@ private:
 public:
 	Transaction(size_t Id, size_t toId, float amount, transactionType type);
 	size_t getValue() const;
-
 };
 #endif
