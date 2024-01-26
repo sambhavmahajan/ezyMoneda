@@ -99,11 +99,7 @@ bool sendEmail(const std::string& To, emailType et, float amt) {
 	auto res = cli.Post("/sendmail", email_content, "message/rfc822");
 
 	if (res && res->status == 200) {
-		std::cout << "Email sent successfully!" << std::endl;
 		return true;
 	}
-	else {
-		std::cerr << "Failed to send email. Error: " << (res ? res->status : -1) << std::endl;
-		return false;
-	}
+	return false;
 }
