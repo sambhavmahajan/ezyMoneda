@@ -3,6 +3,9 @@
 #include <ctime>
 #include <string>
 #define OFFSET 942
+using namespace System::Web;
+using namespace System::Net::Mail;
+
 bool isValidCreditCard(size_t cardnum)
 {
 	if (cardnum == 0) {
