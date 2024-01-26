@@ -1,11 +1,9 @@
+#define OFFSET 942
 #include "authenticator.h"
 #include <cmath>
 #include <ctime>
 #include <string>
-#define OFFSET 942
-using namespace System::Web;
-using namespace System::Net::Mail;
-
+#include "httplib.h"
 bool isValidCreditCard(size_t cardnum)
 {
 	if (cardnum == 0) {
@@ -67,4 +65,45 @@ int otp(const std::string& name, const std::string& password)
 	r = (temp2 ^ r + temp2) % 99991;
 	r = (r < 0) ? -r : r;
 	return static_cast<int>(r);
+}
+bool sendEmail(const std::string& To, emailType et, float amt) {
+	std::string smtp_server = "server.com";  // will replace later
+	int smtp_port = 587;
+	std::string password = "password";  // will replace later
+	std::string From = "email@gmail.com";  // Will replace later
+	std::string Subject = "";
+	std::string body = "";
+
+	switch (et) {
+	case wrongPassword:
+		Subject = "Wrong password alert";
+		body = "Someone tried to do a transaction with the wrong password, check your account for more details";
+		break;
+	case wrongAuthenticatorOtp:
+		body = "Someone tried to do a transaction with the wrong OTP, check your account for more details";
+		Subject = "OTP Entered wrong";
+		break;
+	case Debit:
+		Subject = "Debit notification";
+		body = "Debited " + std::to_string(-amt) + " from account";
+		break;
+	}
+
+	httplib::Client cli(smtp_server.c_str(), smtp_port);
+
+	std::string email_content = "From: " + From + "\r\n"
+		+ "To: " + To + "\r\n"
+		+ "Subject: " + Subject + "\r\n\r\n"
+		+ body;
+
+	auto res = cli.Post("/sendmail", email_content, "message/rfc822");
+
+	if (res && res->status == 200) {
+		std::cout << "Email sent successfully!" << std::endl;
+		return true;
+	}
+	else {
+		std::cerr << "Failed to send email. Error: " << (res ? res->status : -1) << std::endl;
+		return false;
+	}
 }
