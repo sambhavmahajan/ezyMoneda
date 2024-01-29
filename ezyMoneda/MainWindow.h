@@ -90,7 +90,7 @@ namespace ezyMoneda {
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"MainWindow";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
-			this->Text = L"MainWindow";
+			this->Text = L"Ezy Moneda - Money made simple";
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			this->ResumeLayout(false);
