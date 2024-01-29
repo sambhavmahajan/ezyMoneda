@@ -40,7 +40,8 @@ namespace ezyMoneda {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::TextBox^ amountTextField;
+
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::ListBox^ TransactionLogList;
 	private: System::Windows::Forms::Label^ label3;
@@ -66,16 +67,16 @@ namespace ezyMoneda {
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->fileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->helpToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->aboutToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->amountTextField = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->TransactionLogList = (gcnew System::Windows::Forms::ListBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->BalanceLabel = (gcnew System::Windows::Forms::Label());
-			this->helpToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->aboutToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -104,6 +105,19 @@ namespace ezyMoneda {
 			this->exitToolStripMenuItem->Size = System::Drawing::Size(93, 22);
 			this->exitToolStripMenuItem->Text = L"Exit";
 			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainWindow::exitToolStripMenuItem_Click);
+			// 
+			// helpToolStripMenuItem
+			// 
+			this->helpToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->aboutToolStripMenuItem });
+			this->helpToolStripMenuItem->Name = L"helpToolStripMenuItem";
+			this->helpToolStripMenuItem->Size = System::Drawing::Size(44, 20);
+			this->helpToolStripMenuItem->Text = L"Help";
+			// 
+			// aboutToolStripMenuItem
+			// 
+			this->aboutToolStripMenuItem->Name = L"aboutToolStripMenuItem";
+			this->aboutToolStripMenuItem->Size = System::Drawing::Size(107, 22);
+			this->aboutToolStripMenuItem->Text = L"About";
 			// 
 			// label1
 			// 
@@ -136,15 +150,15 @@ namespace ezyMoneda {
 			this->label2->TabIndex = 3;
 			this->label2->Text = L"Amount";
 			// 
-			// textBox2
+			// amountTextField
 			// 
-			this->textBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->textBox2->Location = System::Drawing::Point(122, 109);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(398, 31);
-			this->textBox2->TabIndex = 4;
-			this->textBox2->TextChanged += gcnew System::EventHandler(this, &MainWindow::textBox2_TextChanged);
+			this->amountTextField->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->amountTextField->Location = System::Drawing::Point(122, 109);
+			this->amountTextField->Name = L"amountTextField";
+			this->amountTextField->Size = System::Drawing::Size(398, 31);
+			this->amountTextField->TabIndex = 4;
+			this->amountTextField->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MainWindow::amountTextFieldChangedKeyPress);
 			// 
 			// button1
 			// 
@@ -188,19 +202,6 @@ namespace ezyMoneda {
 			this->BalanceLabel->TabIndex = 8;
 			this->BalanceLabel->Text = L"Balance $0.00";
 			// 
-			// helpToolStripMenuItem
-			// 
-			this->helpToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->aboutToolStripMenuItem });
-			this->helpToolStripMenuItem->Name = L"helpToolStripMenuItem";
-			this->helpToolStripMenuItem->Size = System::Drawing::Size(44, 20);
-			this->helpToolStripMenuItem->Text = L"Help";
-			// 
-			// aboutToolStripMenuItem
-			// 
-			this->aboutToolStripMenuItem->Name = L"aboutToolStripMenuItem";
-			this->aboutToolStripMenuItem->Size = System::Drawing::Size(180, 22);
-			this->aboutToolStripMenuItem->Text = L"About";
-			// 
 			// MainWindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -210,7 +211,7 @@ namespace ezyMoneda {
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->TransactionLogList);
 			this->Controls->Add(this->button1);
-			this->Controls->Add(this->textBox2);
+			this->Controls->Add(this->amountTextField);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label1);
@@ -231,7 +232,23 @@ namespace ezyMoneda {
 	private: System::Void exitToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		Application::Exit();
 	}
-	private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void amountTextFieldChangedKeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+		if (!Char::IsControl(e->KeyChar) && !Char::IsDigit(e->KeyChar) && e->KeyChar != '.')
+		{
+			e->Handled = true;
+		}
+		if (e->KeyChar == '.' && amountTextField->Text->Contains("."))
+		{
+			e->Handled = true;
+		}
+		if (amountTextField->Text->Contains("."))
+		{
+			int indexOfDecimal = amountTextField->Text->IndexOf('.');
+			if (amountTextField->Text->Length - indexOfDecimal > 2 && !Char::IsControl(e->KeyChar))
+			{
+				e->Handled = true;
+			}
+		}
 	}
 };
 }
