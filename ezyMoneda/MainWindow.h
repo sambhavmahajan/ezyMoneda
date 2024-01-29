@@ -44,6 +44,7 @@ namespace ezyMoneda {
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::ListBox^ TransactionLogList;
 	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Label^ BalanceLabel;
 
 	protected:
 
@@ -70,6 +71,7 @@ namespace ezyMoneda {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->TransactionLogList = (gcnew System::Windows::Forms::ListBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->BalanceLabel = (gcnew System::Windows::Forms::Label());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -78,7 +80,7 @@ namespace ezyMoneda {
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->fileToolStripMenuItem });
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(718, 24);
+			this->menuStrip1->Size = System::Drawing::Size(668, 24);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -154,7 +156,7 @@ namespace ezyMoneda {
 			this->TransactionLogList->FormattingEnabled = true;
 			this->TransactionLogList->Location = System::Drawing::Point(34, 211);
 			this->TransactionLogList->Name = L"TransactionLogList";
-			this->TransactionLogList->Size = System::Drawing::Size(459, 238);
+			this->TransactionLogList->Size = System::Drawing::Size(592, 238);
 			this->TransactionLogList->TabIndex = 6;
 			// 
 			// label3
@@ -168,11 +170,23 @@ namespace ezyMoneda {
 			this->label3->TabIndex = 7;
 			this->label3->Text = L"Transaction Log";
 			// 
+			// BalanceLabel
+			// 
+			this->BalanceLabel->AutoSize = true;
+			this->BalanceLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->BalanceLabel->Location = System::Drawing::Point(476, 462);
+			this->BalanceLabel->Name = L"BalanceLabel";
+			this->BalanceLabel->Size = System::Drawing::Size(150, 25);
+			this->BalanceLabel->TabIndex = 8;
+			this->BalanceLabel->Text = L"Balance $0.00";
+			// 
 			// MainWindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(718, 475);
+			this->ClientSize = System::Drawing::Size(668, 496);
+			this->Controls->Add(this->BalanceLabel);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->TransactionLogList);
 			this->Controls->Add(this->button1);
