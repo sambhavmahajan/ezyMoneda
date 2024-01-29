@@ -125,6 +125,7 @@
     <ClCompile Include="Transaction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Account.h" />
     <ClInclude Include="authenticator.h" />
     <ClInclude Include="httplib.h" />
     <ClInclude Include="MainWindow.h">
