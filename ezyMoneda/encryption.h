@@ -1,8 +1,5 @@
 #ifndef ENCRYPTION_H
 #define ENCRYPTION_H
-
-class encryption
-{
-};
-
+#include <string>
+std::string hash(std::string input);
 #endif
