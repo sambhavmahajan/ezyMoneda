@@ -45,6 +45,8 @@ namespace ezyMoneda {
 	private: System::Windows::Forms::ListBox^ TransactionLogList;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ BalanceLabel;
+	private: System::Windows::Forms::ToolStripMenuItem^ helpToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ aboutToolStripMenuItem;
 
 	protected:
 
@@ -72,12 +74,17 @@ namespace ezyMoneda {
 			this->TransactionLogList = (gcnew System::Windows::Forms::ListBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->BalanceLabel = (gcnew System::Windows::Forms::Label());
+			this->helpToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->aboutToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// menuStrip1
 			// 
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->fileToolStripMenuItem });
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->fileToolStripMenuItem,
+					this->helpToolStripMenuItem
+			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
 			this->menuStrip1->Size = System::Drawing::Size(668, 24);
@@ -180,6 +187,19 @@ namespace ezyMoneda {
 			this->BalanceLabel->Size = System::Drawing::Size(150, 25);
 			this->BalanceLabel->TabIndex = 8;
 			this->BalanceLabel->Text = L"Balance $0.00";
+			// 
+			// helpToolStripMenuItem
+			// 
+			this->helpToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->aboutToolStripMenuItem });
+			this->helpToolStripMenuItem->Name = L"helpToolStripMenuItem";
+			this->helpToolStripMenuItem->Size = System::Drawing::Size(44, 20);
+			this->helpToolStripMenuItem->Text = L"Help";
+			// 
+			// aboutToolStripMenuItem
+			// 
+			this->aboutToolStripMenuItem->Name = L"aboutToolStripMenuItem";
+			this->aboutToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->aboutToolStripMenuItem->Text = L"About";
 			// 
 			// MainWindow
 			// 
