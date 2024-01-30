@@ -5,6 +5,7 @@
 #include<vector>
 class Transaction_handler {
 private:
+	std::vector<float> transaction;
 };
 #endif
 
