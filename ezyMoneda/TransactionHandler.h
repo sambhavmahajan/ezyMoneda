@@ -5,10 +5,11 @@
 #include<vector>
 class Transaction_handler {
 private:
+	
 	std::vector<float> transaction;
 public:
 	void addTransaction(float amount, Transaction type);
-	const std::vector<Transaction>& getAllTransactions() const;
+	const std::vector<float>& getAllTransactions() const;
 
 	Transaction_handler() = default;
 };

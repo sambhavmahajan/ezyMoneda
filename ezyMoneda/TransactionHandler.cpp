@@ -1,10 +1,13 @@
 #include "TransactionHandler.h"
-
+#include<iostream>
 void Transaction_handler::addTransaction(float amount, Transaction type)
 {
+	
+	transaction.push_back(amount);
 }
 
-const std::vector<Transaction>& Transaction_handler::getAllTransactions() const
+const std::vector<float>& Transaction_handler::getAllTransactions() const
+
 {
-	// TODO: insert return statement here
+	
 }
