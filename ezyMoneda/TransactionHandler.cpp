@@ -42,7 +42,10 @@ int main() {
     std::cout << "Transaction History:" << std::endl;
 
    
-
+    for (const auto& amount : transactions)
+ {
+        std::cout << "Amount: " << amount << std::endl;
+    }
 
     return 0;
 }
