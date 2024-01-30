@@ -35,5 +35,14 @@ int main() {
         std::cin >> choice;
 
     }
+    while (choice == "Yes" || choice == "yes");
+
+    const std::vector<float>& transactions = handler.getAllTransactions();
+
+    std::cout << "Transaction History:" << std::endl;
+
+   
+
+
     return 0;
 }
