@@ -6,6 +6,10 @@
 class Transaction_handler {
 private:
 	std::vector<float> transaction;
+public:
+	void addTransaction(float amount, Transaction type);
+	
+	Transaction_handler() = default;
 };
 #endif
 
