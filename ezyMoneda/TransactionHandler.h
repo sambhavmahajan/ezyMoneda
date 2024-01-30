@@ -3,6 +3,8 @@
 
 #include "Transaction.h"
 #include<vector>
-
+class Transaction_handler {
+private:
+};
 #endif
 
