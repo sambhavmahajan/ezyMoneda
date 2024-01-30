@@ -16,6 +16,12 @@ int main() {
 	Transaction_handler handler;
 	std::string choice;
 	do {
+		float amount;
+		std::cout << "Enter transaction amount: ";
+		std::cin >> amount;
+
+		
+		std::string transactionType;
 	}
 
 	return 0;
