@@ -1,5 +1,6 @@
 #include "TransactionHandler.h"
 #include<iostream>
+#include<string>
 void Transaction_handler::addTransaction(float amount, Transaction type)
 {
 	
@@ -13,5 +14,7 @@ const std::vector<float>& Transaction_handler::getAllTransactions() const
 }
 int main() {
 	Transaction_handler handler;
+	std::string choice;
+
 	return 0;
 }
