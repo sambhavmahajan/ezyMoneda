@@ -11,3 +11,7 @@ const std::vector<float>& Transaction_handler::getAllTransactions() const
 {
 	return transaction;
 }
+int main() {
+	
+	return 0;
+}
