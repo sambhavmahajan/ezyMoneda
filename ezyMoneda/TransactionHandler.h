@@ -8,7 +8,8 @@ private:
 	std::vector<float> transaction;
 public:
 	void addTransaction(float amount, Transaction type);
-	
+	const std::vector<Transaction>& getAllTransactions() const;
+
 	Transaction_handler() = default;
 };
 #endif
