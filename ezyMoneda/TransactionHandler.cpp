@@ -9,5 +9,5 @@ void Transaction_handler::addTransaction(float amount, Transaction type)
 const std::vector<float>& Transaction_handler::getAllTransactions() const
 
 {
-	
+	return transaction;
 }
