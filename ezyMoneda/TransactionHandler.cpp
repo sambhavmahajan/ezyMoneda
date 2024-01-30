@@ -25,7 +25,15 @@ int main() {
             std::cout << "Enter transaction type (Credit or Debit): ";
             std::cin >> transactionType;
         } 
-       
+        while (transactionType != "Credit" && transactionType != "Debit");
 
+        Transaction type = (transactionType == "Credit") ? CREDIT : DEBIT;
+
+        handler.addTransaction(amount, type);
+
+        std::cout << "Do you want to add another transaction? (Yes/No): ";
+        std::cin >> choice;
+
+    }
     return 0;
 }
