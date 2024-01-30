@@ -15,6 +15,8 @@ const std::vector<float>& Transaction_handler::getAllTransactions() const
 int main() {
 	Transaction_handler handler;
 	std::string choice;
+	do {
+	}
 
 	return 0;
 }
