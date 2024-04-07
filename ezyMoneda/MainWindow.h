@@ -116,8 +116,9 @@ namespace ezyMoneda {
 			// aboutToolStripMenuItem
 			// 
 			this->aboutToolStripMenuItem->Name = L"aboutToolStripMenuItem";
-			this->aboutToolStripMenuItem->Size = System::Drawing::Size(107, 22);
+			this->aboutToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->aboutToolStripMenuItem->Text = L"About";
+			this->aboutToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainWindow::aboutToolStripMenuItem_Click);
 			// 
 			// label1
 			// 
@@ -158,6 +159,7 @@ namespace ezyMoneda {
 			this->amountTextField->Name = L"amountTextField";
 			this->amountTextField->Size = System::Drawing::Size(398, 31);
 			this->amountTextField->TabIndex = 4;
+			this->amountTextField->TextChanged += gcnew System::EventHandler(this, &MainWindow::amountTextField_TextChanged);
 			this->amountTextField->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MainWindow::amountTextFieldChangedKeyPress);
 			// 
 			// button1
@@ -250,5 +252,10 @@ namespace ezyMoneda {
 			}
 		}
 	}
+private: System::Void amountTextField_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void aboutToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	MessageBox::Show("This project is a prototype of a payment processing system\nMade and designed by:\nSambhav Mahajan: 23BCS11290\nMayank Dhatwalia : 23BCS12956\nAstha Raj : 23BCS10347\nGaurav Lamba : 23BCS12937\nVinesh Kumar Goswami : 23BCS10319\n\nStudents of Chandigarh University","EzyMoneda", MessageBoxButtons::OK, MessageBoxIcon::Information);
+}
 };
 }
