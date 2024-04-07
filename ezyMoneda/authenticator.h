@@ -1,7 +1,7 @@
 #ifndef AUTHETICATOR_H
 #define AUTHETICATOR_H
 #include <string>
-bool isValidCreditCard(size_t cardnum);
+bool isValidCreditCard(std::string cardNumber);
 int otp(const std::string& name, const std::string& password);
 enum emailType {
 	wrongPassword, wrongAuthenticatorOtp, Debit
