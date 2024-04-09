@@ -57,6 +57,7 @@ namespace ezyMoneda {
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Label^ label6;
 
 	protected:
 
@@ -92,6 +93,7 @@ namespace ezyMoneda {
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->menuStrip1->SuspendLayout();
 			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
@@ -214,7 +216,7 @@ namespace ezyMoneda {
 			this->BalanceLabel->AutoSize = true;
 			this->BalanceLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->BalanceLabel->Location = System::Drawing::Point(540, 547);
+			this->BalanceLabel->Location = System::Drawing::Point(484, 557);
 			this->BalanceLabel->Name = L"BalanceLabel";
 			this->BalanceLabel->Size = System::Drawing::Size(150, 25);
 			this->BalanceLabel->TabIndex = 8;
@@ -277,11 +279,23 @@ namespace ezyMoneda {
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &MainWindow::button2_Click);
 			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label6->Location = System::Drawing::Point(33, 557);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(114, 25);
+			this->label6->TabIndex = 10;
+			this->label6->Text = L"Name: null";
+			// 
 			// MainWindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(724, 601);
+			this->Controls->Add(this->label6);
 			this->Controls->Add(this->groupBox1);
 			this->Controls->Add(this->BalanceLabel);
 			this->Controls->Add(this->label3);
@@ -337,7 +351,14 @@ private: System::Void aboutToolStripMenuItem_Click(System::Object^ sender, Syste
 }
 private: System::Void MainWindow_Load(System::Object^ sender, System::EventArgs^ e) {
 }
-private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (String::IsNullOrEmpty(textBox2->Text) || String::IsNullOrEmpty(textBox3->Text)) {
+			MessageBox::Show("Error: Field(s) can't be empty!", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+	if (account) {
+		delete account;
+	}
+	label6->Text = "Name: null";
 	string temp = marshal_as<string>(textBox2->Text);
 	int id = stoi(temp);
 	server s(id, temp);
@@ -346,6 +367,9 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 		return;
 	}
 	account = new Account(*s.account);
+	String^ name = gcnew String(account->getName().c_str());
+	label6->Text = name;
+	BalanceLabel->Text = String::Concat("Balance $", account->getBalance());
 }
 private: System::Void textBox2_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
 

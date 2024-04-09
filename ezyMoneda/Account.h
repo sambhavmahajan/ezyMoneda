@@ -26,6 +26,7 @@ public:
         Password = a.Password;
         Balance = a.Balance;
     }
+    int getId() const { return ID; }
     std::string getName() const { return Name; }
     std::string getEmail() const { return Email; }
     std::string getPassword() const { return Password; }
