@@ -15,17 +15,13 @@ class server {
 private:
 	const string accountLink;
 	const string transactionLink;
-	bool isOk;
 public:
 	Account* account;
 	vector<Transaction> transactions;
-	bool status() const {
-		return isOk;
-	}
 	~server(){
 		delete account;
 	}
-	server(int id, string password) : accountLink("accounts.txt"), transactionLink("transaction.txt"){
+	server(int id, string password) : accountLink("accounts.txt"), transactionLink("transaction.txt"), account(nullptr){
 		ifstream file(accountLink);
 		password = Hash(password);
 		string line;
