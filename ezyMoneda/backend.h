@@ -51,10 +51,12 @@ public:
 			data.push_back(temp);
 		}
 		if (data[4] != password) {
-			isOk = false;
 			return;
 		}
 		account = new Account(stoi(data[0]), data[1], data[2], data[3], stof(data[4]));
+	}
+	void openNew(int id, string password) {
+		server(id, password);
 	}
 };
 
