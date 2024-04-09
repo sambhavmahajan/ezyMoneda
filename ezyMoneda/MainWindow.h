@@ -340,7 +340,11 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	string temp = marshal_as<string>(textBox2->Text);
 	int id = stoi(temp);
 	server s(id, temp);
-	account = new Account(s.account);
+	if (s.account == nullptr) {
+		MessageBox::Show("Error: Could not fetch account", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+	account = new Account(*s.account);
 }
 };
 }
