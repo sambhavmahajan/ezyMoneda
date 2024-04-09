@@ -21,6 +21,7 @@ public:
 	~server(){
 		delete account;
 	}
+	server():account(nullptr){}
 	server(int id, string password) : accountLink("accounts.txt"), transactionLink("transaction.txt"), account(nullptr){
 		ifstream file(accountLink);
 		password = Hash(password);
@@ -56,6 +57,7 @@ public:
 		account = new Account(stoi(data[0]), data[1], data[2], data[3], stof(data[4]));
 	}
 	void openNew(int id, string password) {
+		if (account) delete account;
 		server(id, password);
 	}
 };

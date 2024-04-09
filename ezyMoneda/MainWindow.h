@@ -1,5 +1,8 @@
 #pragma once
-
+#include "backend.h"
+#include <string>
+#include <msclr\marshal_cppstd.h>
+using namespace msclr::interop;
 namespace ezyMoneda {
 
 	using namespace System;
@@ -325,6 +328,7 @@ namespace ezyMoneda {
 			}
 		}
 	}
+private: Account *account;
 private: System::Void amountTextField_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void aboutToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -333,6 +337,10 @@ private: System::Void aboutToolStripMenuItem_Click(System::Object^ sender, Syste
 private: System::Void MainWindow_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	string temp = marshal_as<string>(textBox2->Text);
+	int id = stoi(temp);
+	server s(id, temp);
+	account = new Account(s.account);
 }
 };
 }

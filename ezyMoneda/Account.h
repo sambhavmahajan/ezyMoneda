@@ -19,6 +19,13 @@ public:
         Password = password;
         Balance = balance;
     }
+    Account(Account& a) {
+        ID = a.ID;
+        Name = a.Name;
+        Email = a.Email;
+        Password = a.Password;
+        Balance = a.Balance;
+    }
     std::string getName() const { return Name; }
     std::string getEmail() const { return Email; }
     std::string getPassword() const { return Password; }
