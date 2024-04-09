@@ -58,7 +58,7 @@ public:
 			isOk = false;
 			return;
 		}
-		account = new Account(stoi(data[0]), data[1], data[2], data[3], stof(data[4]);
+		account = new Account(stoi(data[0]), data[1], data[2], data[3], stof(data[4]));
 	}
 };
 
