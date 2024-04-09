@@ -9,7 +9,7 @@ char convertToAlpha(char c)
 }
 
 
-std::string hash(std::string input)
+std::string Hash(std::string input)
 {
 	std::string r = "";
 	int length = input.length();

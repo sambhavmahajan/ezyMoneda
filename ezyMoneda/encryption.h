@@ -5,5 +5,5 @@
 #define HASH_LENGTH 16
 #include <string>
 char convertToAlpha(char c);
-std::string hash(std::string input);
+std::string Hash(std::string input);
 #endif
