@@ -13,12 +13,12 @@ using namespace std;
 
 class server {
 private:
-	Account *account;
-	vector<Transaction> transactions;
 	const string accountLink;
 	const string transactionLink;
 	bool isOk;
 public:
+	Account* account;
+	vector<Transaction> transactions;
 	bool status() const {
 		return isOk;
 	}
