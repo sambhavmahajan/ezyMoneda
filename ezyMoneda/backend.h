@@ -54,7 +54,11 @@ public:
 		if (!temp.empty()) {
 			data.push_back(temp);
 		}
-		account = new Account()
+		if (data[4] != password) {
+			isOk = false;
+			return;
+		}
+		account = new Account(stoi(data[0]), data[1], data[2], data[3], stof(data[4]);
 	}
 };
 
