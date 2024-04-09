@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <sstream>
+#include <string>
 using namespace std;
 #include "Account.h"
 #include "encryption.h"
@@ -11,17 +13,48 @@ using namespace std;
 
 class server {
 private:
-	Account account;
+	Account *account;
 	vector<Transaction> transactions;
 	const string accountLink;
 	const string transactionLink;
+	bool isOk;
 public:
+	bool status() const {
+		return isOk;
+	}
+	~server(){
+		delete account;
+	}
 	server(int id, string password) : accountLink("accounts.txt"), transactionLink("transaction.txt"){
 		ifstream file(accountLink);
 		password = Hash(password);
 		string line;
-		string content = "";
-		
+		while (std::getline(file, line)) {
+			std::istringstream iss(line);
+			int _id;
+			if (iss >> _id) {
+				if (id == _id) {
+					file.close();
+					break;
+				}
+			}
+		}
+		vector<string> data;
+		string temp = "";
+		for (const char& c : line) {
+			if (c == ' ') {
+				if (temp.size() > 0) {
+					data.push_back(temp);
+					temp = "";
+				}
+				continue;
+			}
+			temp += c;
+		}
+		if (!temp.empty()) {
+			data.push_back(temp);
+		}
+		account = new Account()
 	}
 };
 
