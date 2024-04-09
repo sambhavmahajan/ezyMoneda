@@ -87,11 +87,11 @@ namespace ezyMoneda {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->BalanceLabel = (gcnew System::Windows::Forms::Label());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->menuStrip1->SuspendLayout();
 			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
@@ -118,7 +118,7 @@ namespace ezyMoneda {
 			// exitToolStripMenuItem
 			// 
 			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(93, 22);
 			this->exitToolStripMenuItem->Text = L"Exit";
 			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainWindow::exitToolStripMenuItem_Click);
 			// 
@@ -132,7 +132,7 @@ namespace ezyMoneda {
 			// aboutToolStripMenuItem
 			// 
 			this->aboutToolStripMenuItem->Name = L"aboutToolStripMenuItem";
-			this->aboutToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->aboutToolStripMenuItem->Size = System::Drawing::Size(107, 22);
 			this->aboutToolStripMenuItem->Text = L"About";
 			this->aboutToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainWindow::aboutToolStripMenuItem_Click);
 			// 
@@ -234,31 +234,12 @@ namespace ezyMoneda {
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Fetch account";
 			// 
-			// button2
+			// textBox3
 			// 
-			this->button2->Location = System::Drawing::Point(555, 105);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(75, 23);
-			this->button2->TabIndex = 0;
-			this->button2->Text = L"Fetch";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &MainWindow::button2_Click);
-			// 
-			// textBox2
-			// 
-			this->textBox2->Location = System::Drawing::Point(73, 32);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(557, 20);
-			this->textBox2->TabIndex = 1;
-			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(17, 35);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(18, 13);
-			this->label4->TabIndex = 2;
-			this->label4->Text = L"ID";
+			this->textBox3->Location = System::Drawing::Point(73, 71);
+			this->textBox3->Name = L"textBox3";
+			this->textBox3->Size = System::Drawing::Size(557, 20);
+			this->textBox3->TabIndex = 4;
 			// 
 			// label5
 			// 
@@ -269,12 +250,32 @@ namespace ezyMoneda {
 			this->label5->TabIndex = 3;
 			this->label5->Text = L"Password";
 			// 
-			// textBox3
+			// label4
 			// 
-			this->textBox3->Location = System::Drawing::Point(73, 71);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(557, 20);
-			this->textBox3->TabIndex = 4;
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(17, 35);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(18, 13);
+			this->label4->TabIndex = 2;
+			this->label4->Text = L"ID";
+			// 
+			// textBox2
+			// 
+			this->textBox2->Location = System::Drawing::Point(73, 32);
+			this->textBox2->Name = L"textBox2";
+			this->textBox2->Size = System::Drawing::Size(557, 20);
+			this->textBox2->TabIndex = 1;
+			this->textBox2->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MainWindow::textBox2_KeyPress);
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(555, 105);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->TabIndex = 0;
+			this->button2->Text = L"Fetch";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MainWindow::button2_Click);
 			// 
 			// MainWindow
 			// 
@@ -345,6 +346,13 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 		return;
 	}
 	account = new Account(*s.account);
+}
+private: System::Void textBox2_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+
+	if (!Char::IsDigit(e->KeyChar) && e->KeyChar != 0x08)
+	{
+		e->Handled = true;
+	}
 }
 };
 }
