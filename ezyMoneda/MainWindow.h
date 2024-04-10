@@ -36,8 +36,6 @@ namespace ezyMoneda {
 			if (components)
 			{
 				delete components;
-			}
-			if (sv) {
 				delete sv;
 			}
 		}
