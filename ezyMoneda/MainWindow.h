@@ -3,6 +3,7 @@
 #include <string>
 #include <msclr\marshal_cppstd.h>
 #include "authenticator.h"
+#include "Transaction.h"
 using namespace msclr::interop;
 server* sv;
 namespace ezyMoneda {
@@ -109,6 +110,8 @@ namespace ezyMoneda {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
+			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->label9 = (gcnew System::Windows::Forms::Label());
@@ -116,8 +119,6 @@ namespace ezyMoneda {
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
-			this->label10 = (gcnew System::Windows::Forms::Label());
 			this->menuStrip1->SuspendLayout();
 			this->groupBox1->SuspendLayout();
 			this->groupBox2->SuspendLayout();
@@ -145,7 +146,7 @@ namespace ezyMoneda {
 			// exitToolStripMenuItem
 			// 
 			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(93, 22);
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->exitToolStripMenuItem->Text = L"Exit";
 			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainWindow::exitToolStripMenuItem_Click);
 			// 
@@ -220,10 +221,13 @@ namespace ezyMoneda {
 			// 
 			// TransactionLogList
 			// 
+			this->TransactionLogList->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->TransactionLogList->FormattingEnabled = true;
+			this->TransactionLogList->ItemHeight = 25;
 			this->TransactionLogList->Location = System::Drawing::Point(35, 528);
 			this->TransactionLogList->Name = L"TransactionLogList";
-			this->TransactionLogList->Size = System::Drawing::Size(655, 199);
+			this->TransactionLogList->Size = System::Drawing::Size(655, 179);
 			this->TransactionLogList->TabIndex = 6;
 			// 
 			// label3
@@ -334,6 +338,23 @@ namespace ezyMoneda {
 			this->groupBox2->TabStop = false;
 			this->groupBox2->Text = L"Reimburse";
 			// 
+			// label10
+			// 
+			this->label10->AutoSize = true;
+			this->label10->Location = System::Drawing::Point(17, 124);
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(43, 13);
+			this->label10->TabIndex = 8;
+			this->label10->Text = L"Amount";
+			// 
+			// textBox5
+			// 
+			this->textBox5->Location = System::Drawing::Point(66, 121);
+			this->textBox5->Name = L"textBox5";
+			this->textBox5->Size = System::Drawing::Size(483, 20);
+			this->textBox5->TabIndex = 7;
+			this->textBox5->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MainWindow::textBox5_KeyPress);
+			// 
 			// button3
 			// 
 			this->button3->Location = System::Drawing::Point(555, 121);
@@ -393,23 +414,6 @@ namespace ezyMoneda {
 			this->label7->Size = System::Drawing::Size(32, 13);
 			this->label7->TabIndex = 0;
 			this->label7->Text = L"Debit";
-			// 
-			// textBox5
-			// 
-			this->textBox5->Location = System::Drawing::Point(66, 121);
-			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(483, 20);
-			this->textBox5->TabIndex = 7;
-			this->textBox5->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MainWindow::textBox5_KeyPress);
-			// 
-			// label10
-			// 
-			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(17, 124);
-			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(43, 13);
-			this->label10->TabIndex = 8;
-			this->label10->Text = L"Amount";
 			// 
 			// MainWindow
 			// 
@@ -478,6 +482,17 @@ namespace ezyMoneda {
 	private: int _id = -1;
 	private: System::Void MainWindow_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
+	private: void refreshTransactions() {
+		TransactionLogList->Items->Clear();
+		for (int i = sv->transactions.size() - 1; i >=0; i--) {
+			if (sv->transactions[i]._fromId == _id) {
+				TransactionLogList->Items->Add("Sent To: " + sv->transactions[i]._toId + "  amount: $" + sv->transactions[i]._amount + "   on time: " + sv->transactions[i]._time);
+			}
+			else if (sv->transactions[i]._toId == _id) {
+				TransactionLogList->Items->Add("Received From: " + sv->transactions[i]._fromId + "  amount: $" + sv->transactions[i]._amount + "   on time: " + sv->transactions[i]._time);
+			}
+		}
+	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (String::IsNullOrEmpty(textBox2->Text) || String::IsNullOrEmpty(textBox3->Text)) {
 			MessageBox::Show("Error: Field(s) can't be empty!", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
@@ -489,10 +504,15 @@ namespace ezyMoneda {
 			MessageBox::Show("Error: No such account", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			return;
 		}
+		if (marshal_as<string>(textBox3->Text) != sv->accounts[_id].getPassword()) {
+			MessageBox::Show("Error: wrong password", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			return;
+		}
 		_id = id;
 		string t = "Name: " + sv->accounts[id].getName();
 		label6->Text = marshal_as<String^>(t);
 		BalanceLabel->Text = marshal_as<String^>("Balance $" + to_string(sv->accounts[id].getBalance()));
+		refreshTransactions();
 	}
 	private: System::Void textBox2_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
 
@@ -510,9 +530,14 @@ namespace ezyMoneda {
 			MessageBox::Show("Error: No sufficent balance", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 		else {
-			sv->accounts[_id].updateBal(tBal);
+			sv->accounts[_id].updateBal(-tBal);
+			int i = stoi(marshal_as<string>(toField->Text));
+			sv->accounts[i].updateBal(tBal);
+			Transaction T(_id, i, tBal);
+			sv->transactions.push_back(T);
+			refreshTransactions();
+			updateBalDis();
 		}
-		updateBalDis();
 	}
 	private: System::Void textBox1_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
 		if (!Char::IsDigit(e->KeyChar) && e->KeyChar != 0x08)
@@ -537,7 +562,9 @@ namespace ezyMoneda {
 			MessageBox::Show("Error: Invalid CVV", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 		else {
-
+			float amt = stof(marshal_as<string>(textBox5->Text));
+			sv->accounts[_id].updateBal(amt);
+			updateBalDis();
 		}
 	}
 	private: System::Void textBox5_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {

@@ -127,7 +127,6 @@
     <ClCompile Include="authenticator.cpp" />
     <ClCompile Include="encryption.cpp" />
     <ClCompile Include="MainWindow.cpp" />
-    <ClCompile Include="Transaction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h" />

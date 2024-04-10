@@ -25,8 +25,8 @@ public:
     std::string getPassword() const { return Password; }
     float getBalance() const { return Balance; }
     void updateBal(float x) {
-        Balance -= x;
-        if (Balance < 0) Balance = 0;
+        this->Balance += x;
+        if (this->Balance < 0) this->Balance = 0;
     }
 };
 

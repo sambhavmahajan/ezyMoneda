@@ -21,9 +21,6 @@
     <ClCompile Include="authenticator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Transaction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="encryption.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
