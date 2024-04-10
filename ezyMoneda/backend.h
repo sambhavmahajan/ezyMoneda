@@ -12,54 +12,17 @@ using namespace std;
 #define BACKEND
 
 class server {
-private:
-	const string accountLink;
-	const string transactionLink;
-    string readFromFile(const std::string& filename) {
-        std::ifstream file(filename);
-        std::string content;
-
-        if (file.is_open()) {
-            std::string line;
-            while (std::getline(file, line)) {
-                content += line;
-                content += '\n';
-            }
-            file.close();
-        }
-
-        return content;
-    }
 public:
-	Account* account;
+	vector<Account> accounts;
 	vector<Transaction> transactions;
-	~server(){
-		delete account;
-	}
-	server():account(nullptr), accountLink("accounts.txt"), transactionLink("transaction.txt") {}
-    server(int id, string password) : accountLink("accounts.txt"), transactionLink("transaction.txt"), account(nullptr) {
-        string text = readFromFile(accountLink);
-        istringstream iss;
-        string line = "";
-        while (iss >> line) {
-            string temp = line.substr(0, line.find(' '));
-            if (stoi(temp) == id) {
-                std::vector<std::string> tokens;
-                std::string token;
-                while (std::getline(iss, token, ' ')) {
-                    tokens.push_back(token);
-                }
-                account = new Account(12, "50", "50", "66", 5);
-            }
-        }
+    server(){
+		Account account1(0, "John Doe", "john@example.com", "password123", 1000.0);
+		Account account2(1, "Alice Smith", "alice@example.com", "password456", 2000.0);
+		Account account3(2, "Bob Johnson", "bob@example.com", "password789", 3000.0);
+		accounts.push_back(account1);
+		accounts.push_back(account2);
+		accounts.push_back(account3);
     }
-
-
-
-	void openNew(int id, string password) {
-		if (account) delete account;
-		server(id, password);
-	}
 };
 
 #endif

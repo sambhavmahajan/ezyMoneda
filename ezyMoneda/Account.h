@@ -19,18 +19,15 @@ public:
         Password = password;
         Balance = balance;
     }
-    Account(Account& a) {
-        ID = a.ID;
-        Name = a.Name;
-        Email = a.Email;
-        Password = a.Password;
-        Balance = a.Balance;
-    }
     int getId() const { return ID; }
     std::string getName() const { return Name; }
     std::string getEmail() const { return Email; }
     std::string getPassword() const { return Password; }
     float getBalance() const { return Balance; }
+    void updateBal(float x) {
+        Balance -= x;
+        if (Balance < 0) Balance = 0;
+    }
 };
 
 #endif
