@@ -354,6 +354,7 @@ private: System::Void MainWindow_Load(System::Object^ sender, System::EventArgs^
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (String::IsNullOrEmpty(textBox2->Text) || String::IsNullOrEmpty(textBox3->Text)) {
 			MessageBox::Show("Error: Field(s) can't be empty!", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			return;
 		}
 	if (account) {
 		delete account;

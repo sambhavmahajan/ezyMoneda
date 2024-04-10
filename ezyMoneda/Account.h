@@ -12,7 +12,7 @@ private:
     float Balance;
 
 public:
-    Account(int id, string &name, string &email, string password, float balance) {
+    Account(int id, string name, string email, string password, float balance) {
         ID = id;
         Name = name;
         Email = email;

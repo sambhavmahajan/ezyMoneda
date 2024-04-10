@@ -15,39 +15,46 @@ class server {
 private:
 	const string accountLink;
 	const string transactionLink;
+    string readFromFile(const std::string& filename) {
+        std::ifstream file(filename);
+        std::string content;
+
+        if (file.is_open()) {
+            std::string line;
+            while (std::getline(file, line)) {
+                content += line;
+                content += '\n';
+            }
+            file.close();
+        }
+
+        return content;
+    }
 public:
 	Account* account;
 	vector<Transaction> transactions;
 	~server(){
 		delete account;
 	}
-	server():account(nullptr){}
+	server():account(nullptr), accountLink("accounts.txt"), transactionLink("transaction.txt") {}
     server(int id, string password) : accountLink("accounts.txt"), transactionLink("transaction.txt"), account(nullptr) {
-        ifstream file(accountLink);
-        if (!file.is_open()) {
-            return;
-        }
-        password = Hash(password);
-        string line;
-        while (std::getline(file, line)) {
-            std::istringstream iss(line);
-            int _id;
-            if (iss >> _id) {
-                if (id == _id) {
-                    vector<string> data;
-                    string temp;
-                    while (iss >> temp) {
-                        data.push_back(temp);
-                    }
-                    if (data.size() == 5 && data[4] == password) {
-                        account = new Account(stoi(data[0]), data[1], data[2], data[3], stof(data[4]));
-                    }
-                    break;
+        string text = readFromFile(accountLink);
+        istringstream iss;
+        string line = "";
+        while (iss >> line) {
+            string temp = line.substr(0, line.find(' '));
+            if (stoi(temp) == id) {
+                std::vector<std::string> tokens;
+                std::string token;
+                while (std::getline(iss, token, ' ')) {
+                    tokens.push_back(token);
                 }
+                account = new Account(12, "50", "50", "66", 5);
             }
         }
-        file.close();
     }
+
+
 
 	void openNew(int id, string password) {
 		if (account) delete account;
