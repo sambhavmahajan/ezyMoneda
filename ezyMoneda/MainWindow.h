@@ -70,6 +70,8 @@ namespace ezyMoneda {
 	private: System::Windows::Forms::DateTimePicker^ dateTimePicker1;
 	private: System::Windows::Forms::Label^ label8;
 	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::TextBox^ textBox5;
+	private: System::Windows::Forms::Label^ label10;
 
 	protected:
 
@@ -114,6 +116,8 @@ namespace ezyMoneda {
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
+			this->label10 = (gcnew System::Windows::Forms::Label());
 			this->menuStrip1->SuspendLayout();
 			this->groupBox1->SuspendLayout();
 			this->groupBox2->SuspendLayout();
@@ -164,7 +168,7 @@ namespace ezyMoneda {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(36, 352);
+			this->label1->Location = System::Drawing::Point(33, 377);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(37, 25);
 			this->label1->TabIndex = 1;
@@ -174,7 +178,7 @@ namespace ezyMoneda {
 			// 
 			this->toField->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->toField->Location = System::Drawing::Point(129, 349);
+			this->toField->Location = System::Drawing::Point(126, 374);
 			this->toField->Name = L"toField";
 			this->toField->Size = System::Drawing::Size(564, 31);
 			this->toField->TabIndex = 2;
@@ -184,7 +188,7 @@ namespace ezyMoneda {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(38, 406);
+			this->label2->Location = System::Drawing::Point(35, 431);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(85, 25);
 			this->label2->TabIndex = 3;
@@ -194,7 +198,7 @@ namespace ezyMoneda {
 			// 
 			this->amountTextField->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->amountTextField->Location = System::Drawing::Point(129, 400);
+			this->amountTextField->Location = System::Drawing::Point(126, 425);
 			this->amountTextField->Name = L"amountTextField";
 			this->amountTextField->Size = System::Drawing::Size(458, 31);
 			this->amountTextField->TabIndex = 4;
@@ -206,7 +210,7 @@ namespace ezyMoneda {
 			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(593, 394);
+			this->button1->Location = System::Drawing::Point(590, 419);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(100, 42);
 			this->button1->TabIndex = 5;
@@ -217,7 +221,7 @@ namespace ezyMoneda {
 			// TransactionLogList
 			// 
 			this->TransactionLogList->FormattingEnabled = true;
-			this->TransactionLogList->Location = System::Drawing::Point(38, 503);
+			this->TransactionLogList->Location = System::Drawing::Point(35, 528);
 			this->TransactionLogList->Name = L"TransactionLogList";
 			this->TransactionLogList->Size = System::Drawing::Size(655, 199);
 			this->TransactionLogList->TabIndex = 6;
@@ -227,7 +231,7 @@ namespace ezyMoneda {
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(38, 465);
+			this->label3->Location = System::Drawing::Point(35, 490);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(167, 25);
 			this->label3->TabIndex = 7;
@@ -238,7 +242,7 @@ namespace ezyMoneda {
 			this->BalanceLabel->AutoSize = true;
 			this->BalanceLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->BalanceLabel->Location = System::Drawing::Point(487, 715);
+			this->BalanceLabel->Location = System::Drawing::Point(484, 740);
 			this->BalanceLabel->Name = L"BalanceLabel";
 			this->BalanceLabel->Size = System::Drawing::Size(150, 25);
 			this->BalanceLabel->TabIndex = 8;
@@ -306,7 +310,7 @@ namespace ezyMoneda {
 			this->label6->AutoSize = true;
 			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label6->Location = System::Drawing::Point(36, 715);
+			this->label6->Location = System::Drawing::Point(33, 740);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(114, 25);
 			this->label6->TabIndex = 10;
@@ -314,6 +318,8 @@ namespace ezyMoneda {
 			// 
 			// groupBox2
 			// 
+			this->groupBox2->Controls->Add(this->label10);
+			this->groupBox2->Controls->Add(this->textBox5);
 			this->groupBox2->Controls->Add(this->button3);
 			this->groupBox2->Controls->Add(this->textBox4);
 			this->groupBox2->Controls->Add(this->label9);
@@ -323,14 +329,14 @@ namespace ezyMoneda {
 			this->groupBox2->Controls->Add(this->label7);
 			this->groupBox2->Location = System::Drawing::Point(38, 189);
 			this->groupBox2->Name = L"groupBox2";
-			this->groupBox2->Size = System::Drawing::Size(652, 122);
+			this->groupBox2->Size = System::Drawing::Size(652, 160);
 			this->groupBox2->TabIndex = 11;
 			this->groupBox2->TabStop = false;
 			this->groupBox2->Text = L"Reimburse";
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(552, 87);
+			this->button3->Location = System::Drawing::Point(555, 121);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(75, 23);
 			this->button3->TabIndex = 6;
@@ -388,11 +394,28 @@ namespace ezyMoneda {
 			this->label7->TabIndex = 0;
 			this->label7->Text = L"Debit";
 			// 
+			// textBox5
+			// 
+			this->textBox5->Location = System::Drawing::Point(66, 121);
+			this->textBox5->Name = L"textBox5";
+			this->textBox5->Size = System::Drawing::Size(483, 20);
+			this->textBox5->TabIndex = 7;
+			this->textBox5->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MainWindow::textBox5_KeyPress);
+			// 
+			// label10
+			// 
+			this->label10->AutoSize = true;
+			this->label10->Location = System::Drawing::Point(17, 124);
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(43, 13);
+			this->label10->TabIndex = 8;
+			this->label10->Text = L"Amount";
+			// 
 			// MainWindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(724, 753);
+			this->ClientSize = System::Drawing::Size(724, 772);
 			this->Controls->Add(this->groupBox2);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->groupBox1);
@@ -505,8 +528,35 @@ namespace ezyMoneda {
 	}
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (isValidCreditCard(marshal_as<string>(textBox1->Text)) == false) {
+			MessageBox::Show("Error: Invalid card number", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+		else if(DateTime::Now > dateTimePicker1->Value){
+			MessageBox::Show("Error: Invalid expiry", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+		else if (textBox4->Text->Length < 3) {
+			MessageBox::Show("Error: Invalid CVV", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+		else {
 
 		}
 	}
-	};
+	private: System::Void textBox5_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+		if (!Char::IsControl(e->KeyChar) && !Char::IsDigit(e->KeyChar) && e->KeyChar != '.')
+		{
+			e->Handled = true;
+		}
+		if (e->KeyChar == '.' && amountTextField->Text->Contains("."))
+		{
+			e->Handled = true;
+		}
+		if (amountTextField->Text->Contains("."))
+		{
+			int indexOfDecimal = amountTextField->Text->IndexOf('.');
+			if (amountTextField->Text->Length - indexOfDecimal > 2 && !Char::IsControl(e->KeyChar))
+			{
+				e->Handled = true;
+			}
+		}
+	}
+};
 }
