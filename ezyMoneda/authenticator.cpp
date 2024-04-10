@@ -5,6 +5,7 @@
 #include <string>
 bool isValidCreditCard(std::string cardNumber)
 {
+	if (cardNumber.size() != 16) return false;
 	int sum = 0;
 	bool alternate = false;
 
