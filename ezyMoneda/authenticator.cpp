@@ -8,7 +8,6 @@ bool isValidCreditCard(std::string cardNumber)
 	if (cardNumber.size() != 16) return false;
 	int sum = 0;
 	bool alternate = false;
-
 	for (int i = cardNumber.length() - 1; i >= 0; --i) {
 		int digit = cardNumber[i] - '0';
 
@@ -18,7 +17,6 @@ bool isValidCreditCard(std::string cardNumber)
 				digit -= 9;
 			}
 		}
-
 		sum += digit;
 		alternate = !alternate;
 	}
