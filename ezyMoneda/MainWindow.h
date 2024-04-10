@@ -550,11 +550,14 @@ namespace ezyMoneda {
 	private: void refreshTransactions() {
 		TransactionLogList->Items->Clear();
 		for (int i = sv->transactions.size() - 1; i >=0; i--) {
-			if (sv->transactions[i]._fromId == _id) {
-				TransactionLogList->Items->Add("Sent To: " + sv->transactions[i]._toId + "  amount: $" + sv->transactions[i]._amount + "   on time: " + sv->transactions[i]._time);
+			if (sv->transactions[i]._fromId == _id && sv->transactions[i]._toId == _id) {
+				TransactionLogList->Items->Add("Reimbursed amount: $" + sv->transactions[i]._amount + " at time: " + sv->transactions[i]._time);
+			}
+			else if (sv->transactions[i]._fromId == _id) {
+				TransactionLogList->Items->Add("Sent To: " + sv->transactions[i]._toId + "  amount: $" + sv->transactions[i]._amount + " at time: " + sv->transactions[i]._time);
 			}
 			else if (sv->transactions[i]._toId == _id) {
-				TransactionLogList->Items->Add("Received From: " + sv->transactions[i]._fromId + "  amount: $" + sv->transactions[i]._amount + "   on time: " + sv->transactions[i]._time);
+				TransactionLogList->Items->Add("Received From: " + sv->transactions[i]._fromId + "  amount: $" + sv->transactions[i]._amount + " at time: " + sv->transactions[i]._time);
 			}
 		}
 	}
@@ -638,7 +641,10 @@ namespace ezyMoneda {
 		else {
 			float amt = stof(marshal_as<string>(textBox5->Text));
 			sv->accounts[_id].updateBal(amt);
+			Transaction T(_id, _id, amt);
+			sv->transactions.push_back(T);
 			updateBalDis();
+			refreshTransactions();
 		}
 	}
 	private: System::Void textBox5_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
