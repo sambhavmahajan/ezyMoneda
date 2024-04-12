@@ -2,7 +2,7 @@
 #define AUTHETICATOR_H
 #include <string>
 bool isValidCreditCard(std::string cardNumber);
-int otp(const std::string& name, const std::string& password);
+std::string generateTOTP(const string& name, const string& password){}
 enum emailType {
 	wrongPassword, wrongAuthenticatorOtp, Debit
 };

@@ -3,6 +3,7 @@
 #include <cmath>
 #include <ctime>
 #include <string>
+using namespace std;
 bool isValidCreditCard(std::string cardNumber)
 {
 	if (cardNumber.size() != 16) return false;
@@ -23,25 +24,16 @@ bool isValidCreditCard(std::string cardNumber)
 
 	return (sum % 10 == 0);
 }
-int otp(const std::string& name, const std::string& password)
-{
-	long long r = (std::time(0) / 30) % 100000 + 946;
-	for (char c : name)
-	{
-		r *= static_cast<int> (c ^ 3 * c << 2);
+string generateTOTP(const string& name, const string& password) {
+	string combined = name + password;
+	auto now = std::time(nullptr);
+	int counter = static_cast<int>(now / 30);
+	combined += std::to_string(counter);
+	int otp = std::hash<std::string>{}(combined) % 1000000;
+	std::string formattedOTP = std::to_string(otp);
+	while (formattedOTP.length() < 6) {
+		formattedOTP = "0" + formattedOTP;
 	}
-	for (char c : password)
-	{
-		r /= static_cast<int> (c ^ 5 / c >> 2);;
-	}
-	long long temp = r;
-	long long temp2 = 0;
-	while (temp > 0)
-	{
-		temp2 += (temp / 57) * (temp % 10);
-		temp /= 10;
-	}
-	r = (temp2 ^ r + temp2) % 99991;
-	r = (r < 0) ? -r : r;
-	return static_cast<int>(r);
+
+	return formattedOTP;
 }
