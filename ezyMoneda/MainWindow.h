@@ -75,6 +75,8 @@ namespace ezyMoneda {
 	private: System::Windows::Forms::GroupBox^ groupBox4;
 	private: System::Windows::Forms::Label^ label12;
 	private: System::Windows::Forms::Label^ label11;
+	private: System::Windows::Forms::Label^ label13;
+	private: System::Windows::Forms::TextBox^ textBox6;
 
 
 	protected:
@@ -123,9 +125,11 @@ namespace ezyMoneda {
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
+			this->label13 = (gcnew System::Windows::Forms::Label());
 			this->groupBox4 = (gcnew System::Windows::Forms::GroupBox());
 			this->label12 = (gcnew System::Windows::Forms::Label());
 			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
 			this->menuStrip1->SuspendLayout();
 			this->groupBox1->SuspendLayout();
 			this->groupBox2->SuspendLayout();
@@ -192,6 +196,7 @@ namespace ezyMoneda {
 			this->toField->Name = L"toField";
 			this->toField->Size = System::Drawing::Size(564, 31);
 			this->toField->TabIndex = 2;
+			this->toField->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MainWindow::toField_KeyPress);
 			// 
 			// label2
 			// 
@@ -234,7 +239,7 @@ namespace ezyMoneda {
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->TransactionLogList->FormattingEnabled = true;
 			this->TransactionLogList->ItemHeight = 25;
-			this->TransactionLogList->Location = System::Drawing::Point(18, 182);
+			this->TransactionLogList->Location = System::Drawing::Point(20, 228);
 			this->TransactionLogList->Name = L"TransactionLogList";
 			this->TransactionLogList->Size = System::Drawing::Size(655, 179);
 			this->TransactionLogList->TabIndex = 6;
@@ -244,7 +249,7 @@ namespace ezyMoneda {
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(18, 144);
+			this->label3->Location = System::Drawing::Point(20, 190);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(167, 25);
 			this->label3->TabIndex = 7;
@@ -308,6 +313,7 @@ namespace ezyMoneda {
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(557, 31);
 			this->textBox2->TabIndex = 1;
+			this->textBox2->TextChanged += gcnew System::EventHandler(this, &MainWindow::textBox2_TextChanged);
 			this->textBox2->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MainWindow::textBox2_KeyPress);
 			// 
 			// button2
@@ -430,6 +436,8 @@ namespace ezyMoneda {
 			// 
 			// groupBox3
 			// 
+			this->groupBox3->Controls->Add(this->textBox6);
+			this->groupBox3->Controls->Add(this->label13);
 			this->groupBox3->Controls->Add(this->label1);
 			this->groupBox3->Controls->Add(this->toField);
 			this->groupBox3->Controls->Add(this->label2);
@@ -441,10 +449,19 @@ namespace ezyMoneda {
 				static_cast<System::Byte>(0)));
 			this->groupBox3->Location = System::Drawing::Point(35, 563);
 			this->groupBox3->Name = L"groupBox3";
-			this->groupBox3->Size = System::Drawing::Size(729, 383);
+			this->groupBox3->Size = System::Drawing::Size(729, 421);
 			this->groupBox3->TabIndex = 12;
 			this->groupBox3->TabStop = false;
 			this->groupBox3->Text = L"Main Dashboard";
+			// 
+			// label13
+			// 
+			this->label13->AutoSize = true;
+			this->label13->Location = System::Drawing::Point(22, 145);
+			this->label13->Name = L"label13";
+			this->label13->Size = System::Drawing::Size(265, 25);
+			this->label13->TabIndex = 8;
+			this->label13->Text = L"TOTP(if transaction > $50)";
 			// 
 			// groupBox4
 			// 
@@ -479,11 +496,19 @@ namespace ezyMoneda {
 			this->label11->TabIndex = 11;
 			this->label11->Text = L"ID: null";
 			// 
+			// textBox6
+			// 
+			this->textBox6->Location = System::Drawing::Point(293, 145);
+			this->textBox6->Name = L"textBox6";
+			this->textBox6->Size = System::Drawing::Size(381, 31);
+			this->textBox6->TabIndex = 9;
+			this->textBox6->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MainWindow::textBox6_KeyPress);
+			// 
 			// MainWindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(802, 956);
+			this->ClientSize = System::Drawing::Size(802, 996);
 			this->Controls->Add(this->groupBox4);
 			this->Controls->Add(this->groupBox2);
 			this->Controls->Add(this->groupBox1);
@@ -601,6 +626,13 @@ namespace ezyMoneda {
 			MessageBox::Show("Error: No sufficent balance", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 		else {
+			if (tBal > 50) {
+				string totp = marshal_as<string>(textBox6->Text);
+				if (totp.compare(generateTOTP(sv->accounts[_id].getName(), sv->accounts[_id].getPassword())) != 0) {
+					MessageBox::Show("Error: Wrong TOTP", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+					return;
+				}
+			}
 			sv->accounts[_id].updateBal(-tBal);
 			int i = stoi(marshal_as<string>(toField->Text));
 			sv->accounts[i].updateBal(tBal);
@@ -663,5 +695,19 @@ namespace ezyMoneda {
 			}
 		}
 	}
+private: System::Void toField_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+	if (!Char::IsDigit(e->KeyChar) && e->KeyChar != 0x08)
+	{
+		e->Handled = true;
+	}
+}
+private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox6_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+	if (!Char::IsDigit(e->KeyChar) && e->KeyChar != 0x08)
+	{
+		e->Handled = true;
+	}
+}
 };
 }

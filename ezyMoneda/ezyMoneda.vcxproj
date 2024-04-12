@@ -124,7 +124,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\TOTP for ezyMoneda\TOTP for ezyMoneda\TOTP for ezyMoneda.cpp" />
     <ClCompile Include="authenticator.cpp" />
     <ClCompile Include="encryption.cpp" />
     <ClCompile Include="MainWindow.cpp" />

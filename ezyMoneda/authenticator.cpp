@@ -1,4 +1,3 @@
-#define OFFSET 942
 #include "authenticator.h"
 #include <cmath>
 #include <ctime>
