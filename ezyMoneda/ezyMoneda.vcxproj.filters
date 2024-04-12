@@ -24,6 +24,9 @@
     <ClCompile Include="encryption.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\TOTP for ezyMoneda\TOTP for ezyMoneda\TOTP for ezyMoneda.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainWindow.h">
