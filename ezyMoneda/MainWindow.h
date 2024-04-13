@@ -54,14 +54,14 @@ namespace ezyMoneda {
 	private: System::Windows::Forms::Label^ BalanceLabel;
 	private: System::Windows::Forms::ToolStripMenuItem^ helpToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ aboutToolStripMenuItem;
-	private: System::Windows::Forms::GroupBox^ groupBox1;
+
 	private: System::Windows::Forms::TextBox^ textBox3;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::GroupBox^ groupBox2;
+
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::TextBox^ textBox4;
@@ -71,12 +71,16 @@ namespace ezyMoneda {
 	private: System::Windows::Forms::Button^ button3;
 	private: System::Windows::Forms::TextBox^ textBox5;
 	private: System::Windows::Forms::Label^ label10;
-	private: System::Windows::Forms::GroupBox^ groupBox3;
+
 	private: System::Windows::Forms::GroupBox^ groupBox4;
 	private: System::Windows::Forms::Label^ label12;
 	private: System::Windows::Forms::Label^ label11;
 	private: System::Windows::Forms::Label^ label13;
 	private: System::Windows::Forms::TextBox^ textBox6;
+	private: System::Windows::Forms::TabControl^ tabControl1;
+	private: System::Windows::Forms::TabPage^ tabPage1;
+	private: System::Windows::Forms::TabPage^ tabPage2;
+	private: System::Windows::Forms::TabPage^ tabPage3;
 
 
 	protected:
@@ -107,14 +111,12 @@ namespace ezyMoneda {
 			this->TransactionLogList = (gcnew System::Windows::Forms::ListBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->BalanceLabel = (gcnew System::Windows::Forms::Label());
-			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
 			this->label10 = (gcnew System::Windows::Forms::Label());
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 			this->button3 = (gcnew System::Windows::Forms::Button());
@@ -124,17 +126,21 @@ namespace ezyMoneda {
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
+			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
 			this->label13 = (gcnew System::Windows::Forms::Label());
 			this->groupBox4 = (gcnew System::Windows::Forms::GroupBox());
 			this->label12 = (gcnew System::Windows::Forms::Label());
 			this->label11 = (gcnew System::Windows::Forms::Label());
-			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
+			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
+			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
+			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
+			this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
 			this->menuStrip1->SuspendLayout();
-			this->groupBox1->SuspendLayout();
-			this->groupBox2->SuspendLayout();
-			this->groupBox3->SuspendLayout();
 			this->groupBox4->SuspendLayout();
+			this->tabControl1->SuspendLayout();
+			this->tabPage1->SuspendLayout();
+			this->tabPage2->SuspendLayout();
+			this->tabPage3->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// menuStrip1
@@ -145,7 +151,7 @@ namespace ezyMoneda {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(802, 24);
+			this->menuStrip1->Size = System::Drawing::Size(793, 24);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -159,7 +165,7 @@ namespace ezyMoneda {
 			// exitToolStripMenuItem
 			// 
 			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(93, 22);
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->exitToolStripMenuItem->Text = L"Exit";
 			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainWindow::exitToolStripMenuItem_Click);
 			// 
@@ -173,8 +179,8 @@ namespace ezyMoneda {
 			// aboutToolStripMenuItem
 			// 
 			this->aboutToolStripMenuItem->Name = L"aboutToolStripMenuItem";
-			this->aboutToolStripMenuItem->Size = System::Drawing::Size(107, 22);
-			this->aboutToolStripMenuItem->Text = L"About";
+			this->aboutToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->aboutToolStripMenuItem->Text = L"About EzyMoneda";
 			this->aboutToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainWindow::aboutToolStripMenuItem_Click);
 			// 
 			// label1
@@ -182,7 +188,7 @@ namespace ezyMoneda {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(17, 45);
+			this->label1->Location = System::Drawing::Point(23, 172);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(37, 25);
 			this->label1->TabIndex = 1;
@@ -192,7 +198,7 @@ namespace ezyMoneda {
 			// 
 			this->toField->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->toField->Location = System::Drawing::Point(110, 42);
+			this->toField->Location = System::Drawing::Point(116, 169);
 			this->toField->Name = L"toField";
 			this->toField->Size = System::Drawing::Size(564, 31);
 			this->toField->TabIndex = 2;
@@ -203,7 +209,7 @@ namespace ezyMoneda {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(19, 99);
+			this->label2->Location = System::Drawing::Point(25, 226);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(85, 25);
 			this->label2->TabIndex = 3;
@@ -213,7 +219,7 @@ namespace ezyMoneda {
 			// 
 			this->amountTextField->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->amountTextField->Location = System::Drawing::Point(110, 93);
+			this->amountTextField->Location = System::Drawing::Point(116, 220);
 			this->amountTextField->Name = L"amountTextField";
 			this->amountTextField->Size = System::Drawing::Size(458, 31);
 			this->amountTextField->TabIndex = 4;
@@ -225,7 +231,7 @@ namespace ezyMoneda {
 			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(574, 87);
+			this->button1->Location = System::Drawing::Point(580, 214);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(100, 42);
 			this->button1->TabIndex = 5;
@@ -239,7 +245,7 @@ namespace ezyMoneda {
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->TransactionLogList->FormattingEnabled = true;
 			this->TransactionLogList->ItemHeight = 25;
-			this->TransactionLogList->Location = System::Drawing::Point(20, 228);
+			this->TransactionLogList->Location = System::Drawing::Point(26, 355);
 			this->TransactionLogList->Name = L"TransactionLogList";
 			this->TransactionLogList->Size = System::Drawing::Size(655, 179);
 			this->TransactionLogList->TabIndex = 6;
@@ -249,7 +255,7 @@ namespace ezyMoneda {
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(20, 190);
+			this->label3->Location = System::Drawing::Point(26, 317);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(167, 25);
 			this->label3->TabIndex = 7;
@@ -266,25 +272,9 @@ namespace ezyMoneda {
 			this->BalanceLabel->TabIndex = 8;
 			this->BalanceLabel->Text = L"Balance $0.00";
 			// 
-			// groupBox1
-			// 
-			this->groupBox1->Controls->Add(this->textBox3);
-			this->groupBox1->Controls->Add(this->label5);
-			this->groupBox1->Controls->Add(this->label4);
-			this->groupBox1->Controls->Add(this->textBox2);
-			this->groupBox1->Controls->Add(this->button2);
-			this->groupBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->groupBox1->Location = System::Drawing::Point(35, 40);
-			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(735, 167);
-			this->groupBox1->TabIndex = 9;
-			this->groupBox1->TabStop = false;
-			this->groupBox1->Text = L"Fetch account";
-			// 
 			// textBox3
 			// 
-			this->textBox3->Location = System::Drawing::Point(129, 69);
+			this->textBox3->Location = System::Drawing::Point(175, 242);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(557, 31);
 			this->textBox3->TabIndex = 4;
@@ -292,7 +282,7 @@ namespace ezyMoneda {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(17, 71);
+			this->label5->Location = System::Drawing::Point(63, 244);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(106, 25);
 			this->label5->TabIndex = 3;
@@ -301,7 +291,7 @@ namespace ezyMoneda {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(17, 35);
+			this->label4->Location = System::Drawing::Point(63, 208);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(32, 25);
 			this->label4->TabIndex = 2;
@@ -309,7 +299,7 @@ namespace ezyMoneda {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(129, 32);
+			this->textBox2->Location = System::Drawing::Point(175, 205);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(557, 31);
 			this->textBox2->TabIndex = 1;
@@ -318,7 +308,7 @@ namespace ezyMoneda {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(586, 106);
+			this->button2->Location = System::Drawing::Point(632, 279);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(100, 42);
 			this->button2->TabIndex = 0;
@@ -337,30 +327,10 @@ namespace ezyMoneda {
 			this->label6->TabIndex = 10;
 			this->label6->Text = L"Name: null";
 			// 
-			// groupBox2
-			// 
-			this->groupBox2->Controls->Add(this->label10);
-			this->groupBox2->Controls->Add(this->textBox5);
-			this->groupBox2->Controls->Add(this->button3);
-			this->groupBox2->Controls->Add(this->textBox4);
-			this->groupBox2->Controls->Add(this->label9);
-			this->groupBox2->Controls->Add(this->dateTimePicker1);
-			this->groupBox2->Controls->Add(this->label8);
-			this->groupBox2->Controls->Add(this->textBox1);
-			this->groupBox2->Controls->Add(this->label7);
-			this->groupBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->groupBox2->Location = System::Drawing::Point(35, 213);
-			this->groupBox2->Name = L"groupBox2";
-			this->groupBox2->Size = System::Drawing::Size(735, 211);
-			this->groupBox2->TabIndex = 11;
-			this->groupBox2->TabStop = false;
-			this->groupBox2->Text = L"Reimburse";
-			// 
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(17, 148);
+			this->label10->Location = System::Drawing::Point(41, 155);
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(85, 25);
 			this->label10->TabIndex = 8;
@@ -368,7 +338,7 @@ namespace ezyMoneda {
 			// 
 			// textBox5
 			// 
-			this->textBox5->Location = System::Drawing::Point(108, 145);
+			this->textBox5->Location = System::Drawing::Point(132, 152);
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(483, 31);
 			this->textBox5->TabIndex = 7;
@@ -376,7 +346,7 @@ namespace ezyMoneda {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(598, 139);
+			this->button3->Location = System::Drawing::Point(622, 146);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(131, 42);
 			this->button3->TabIndex = 6;
@@ -386,7 +356,7 @@ namespace ezyMoneda {
 			// 
 			// textBox4
 			// 
-			this->textBox4->Location = System::Drawing::Point(108, 108);
+			this->textBox4->Location = System::Drawing::Point(132, 115);
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(73, 31);
 			this->textBox4->TabIndex = 5;
@@ -395,7 +365,7 @@ namespace ezyMoneda {
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(17, 116);
+			this->label9->Location = System::Drawing::Point(41, 123);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(55, 25);
 			this->label9->TabIndex = 4;
@@ -403,7 +373,7 @@ namespace ezyMoneda {
 			// 
 			// dateTimePicker1
 			// 
-			this->dateTimePicker1->Location = System::Drawing::Point(108, 72);
+			this->dateTimePicker1->Location = System::Drawing::Point(132, 79);
 			this->dateTimePicker1->Name = L"dateTimePicker1";
 			this->dateTimePicker1->Size = System::Drawing::Size(609, 31);
 			this->dateTimePicker1->TabIndex = 3;
@@ -411,7 +381,7 @@ namespace ezyMoneda {
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(17, 72);
+			this->label8->Location = System::Drawing::Point(41, 79);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(72, 25);
 			this->label8->TabIndex = 2;
@@ -419,7 +389,7 @@ namespace ezyMoneda {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(228, 28);
+			this->textBox1->Location = System::Drawing::Point(252, 35);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(489, 31);
 			this->textBox1->TabIndex = 1;
@@ -428,36 +398,24 @@ namespace ezyMoneda {
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(14, 31);
+			this->label7->Location = System::Drawing::Point(38, 38);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(208, 25);
 			this->label7->TabIndex = 0;
 			this->label7->Text = L"Visa Credit Card No.";
 			// 
-			// groupBox3
+			// textBox6
 			// 
-			this->groupBox3->Controls->Add(this->textBox6);
-			this->groupBox3->Controls->Add(this->label13);
-			this->groupBox3->Controls->Add(this->label1);
-			this->groupBox3->Controls->Add(this->toField);
-			this->groupBox3->Controls->Add(this->label2);
-			this->groupBox3->Controls->Add(this->amountTextField);
-			this->groupBox3->Controls->Add(this->label3);
-			this->groupBox3->Controls->Add(this->button1);
-			this->groupBox3->Controls->Add(this->TransactionLogList);
-			this->groupBox3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->groupBox3->Location = System::Drawing::Point(35, 563);
-			this->groupBox3->Name = L"groupBox3";
-			this->groupBox3->Size = System::Drawing::Size(729, 421);
-			this->groupBox3->TabIndex = 12;
-			this->groupBox3->TabStop = false;
-			this->groupBox3->Text = L"Main Dashboard";
+			this->textBox6->Location = System::Drawing::Point(299, 272);
+			this->textBox6->Name = L"textBox6";
+			this->textBox6->Size = System::Drawing::Size(381, 31);
+			this->textBox6->TabIndex = 9;
+			this->textBox6->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MainWindow::textBox6_KeyPress);
 			// 
 			// label13
 			// 
 			this->label13->AutoSize = true;
-			this->label13->Location = System::Drawing::Point(22, 145);
+			this->label13->Location = System::Drawing::Point(28, 272);
 			this->label13->Name = L"label13";
 			this->label13->Size = System::Drawing::Size(265, 25);
 			this->label13->TabIndex = 8;
@@ -471,7 +429,7 @@ namespace ezyMoneda {
 			this->groupBox4->Controls->Add(this->BalanceLabel);
 			this->groupBox4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->groupBox4->Location = System::Drawing::Point(35, 430);
+			this->groupBox4->Location = System::Drawing::Point(28, 27);
 			this->groupBox4->Name = L"groupBox4";
 			this->groupBox4->Size = System::Drawing::Size(729, 127);
 			this->groupBox4->TabIndex = 13;
@@ -496,24 +454,81 @@ namespace ezyMoneda {
 			this->label11->TabIndex = 11;
 			this->label11->Text = L"ID: null";
 			// 
-			// textBox6
+			// tabControl1
 			// 
-			this->textBox6->Location = System::Drawing::Point(293, 145);
-			this->textBox6->Name = L"textBox6";
-			this->textBox6->Size = System::Drawing::Size(381, 31);
-			this->textBox6->TabIndex = 9;
-			this->textBox6->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MainWindow::textBox6_KeyPress);
+			this->tabControl1->Controls->Add(this->tabPage1);
+			this->tabControl1->Controls->Add(this->tabPage2);
+			this->tabControl1->Controls->Add(this->tabPage3);
+			this->tabControl1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->tabControl1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->tabControl1->Location = System::Drawing::Point(0, 24);
+			this->tabControl1->Name = L"tabControl1";
+			this->tabControl1->SelectedIndex = 0;
+			this->tabControl1->Size = System::Drawing::Size(793, 598);
+			this->tabControl1->TabIndex = 14;
+			// 
+			// tabPage1
+			// 
+			this->tabPage1->Controls->Add(this->textBox6);
+			this->tabPage1->Controls->Add(this->groupBox4);
+			this->tabPage1->Controls->Add(this->label1);
+			this->tabPage1->Controls->Add(this->label13);
+			this->tabPage1->Controls->Add(this->TransactionLogList);
+			this->tabPage1->Controls->Add(this->button1);
+			this->tabPage1->Controls->Add(this->toField);
+			this->tabPage1->Controls->Add(this->label3);
+			this->tabPage1->Controls->Add(this->label2);
+			this->tabPage1->Controls->Add(this->amountTextField);
+			this->tabPage1->Location = System::Drawing::Point(4, 34);
+			this->tabPage1->Name = L"tabPage1";
+			this->tabPage1->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage1->Size = System::Drawing::Size(785, 560);
+			this->tabPage1->TabIndex = 0;
+			this->tabPage1->Text = L"Main DashBoard";
+			this->tabPage1->UseVisualStyleBackColor = true;
+			// 
+			// tabPage2
+			// 
+			this->tabPage2->Controls->Add(this->label10);
+			this->tabPage2->Controls->Add(this->label7);
+			this->tabPage2->Controls->Add(this->textBox5);
+			this->tabPage2->Controls->Add(this->textBox1);
+			this->tabPage2->Controls->Add(this->button3);
+			this->tabPage2->Controls->Add(this->label8);
+			this->tabPage2->Controls->Add(this->textBox4);
+			this->tabPage2->Controls->Add(this->dateTimePicker1);
+			this->tabPage2->Controls->Add(this->label9);
+			this->tabPage2->Location = System::Drawing::Point(4, 34);
+			this->tabPage2->Name = L"tabPage2";
+			this->tabPage2->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage2->Size = System::Drawing::Size(785, 560);
+			this->tabPage2->TabIndex = 1;
+			this->tabPage2->Text = L"Reimburse";
+			this->tabPage2->UseVisualStyleBackColor = true;
+			// 
+			// tabPage3
+			// 
+			this->tabPage3->Controls->Add(this->textBox3);
+			this->tabPage3->Controls->Add(this->textBox2);
+			this->tabPage3->Controls->Add(this->label5);
+			this->tabPage3->Controls->Add(this->button2);
+			this->tabPage3->Controls->Add(this->label4);
+			this->tabPage3->Location = System::Drawing::Point(4, 34);
+			this->tabPage3->Name = L"tabPage3";
+			this->tabPage3->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage3->Size = System::Drawing::Size(785, 560);
+			this->tabPage3->TabIndex = 2;
+			this->tabPage3->Text = L"Fetch Account";
+			this->tabPage3->UseVisualStyleBackColor = true;
 			// 
 			// MainWindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(802, 996);
-			this->Controls->Add(this->groupBox4);
-			this->Controls->Add(this->groupBox2);
-			this->Controls->Add(this->groupBox1);
+			this->ClientSize = System::Drawing::Size(793, 622);
+			this->Controls->Add(this->tabControl1);
 			this->Controls->Add(this->menuStrip1);
-			this->Controls->Add(this->groupBox3);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
 			this->MainMenuStrip = this->menuStrip1;
 			this->MaximizeBox = false;
@@ -523,14 +538,15 @@ namespace ezyMoneda {
 			this->Load += gcnew System::EventHandler(this, &MainWindow::MainWindow_Load);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
-			this->groupBox1->ResumeLayout(false);
-			this->groupBox1->PerformLayout();
-			this->groupBox2->ResumeLayout(false);
-			this->groupBox2->PerformLayout();
-			this->groupBox3->ResumeLayout(false);
-			this->groupBox3->PerformLayout();
 			this->groupBox4->ResumeLayout(false);
 			this->groupBox4->PerformLayout();
+			this->tabControl1->ResumeLayout(false);
+			this->tabPage1->ResumeLayout(false);
+			this->tabPage1->PerformLayout();
+			this->tabPage2->ResumeLayout(false);
+			this->tabPage2->PerformLayout();
+			this->tabPage3->ResumeLayout(false);
+			this->tabPage3->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
