@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/EzyMoneda.zip
+/TOTP for ezyMoneda.zip
+/.gitignore
