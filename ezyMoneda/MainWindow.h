@@ -165,7 +165,7 @@ namespace ezyMoneda {
 			// exitToolStripMenuItem
 			// 
 			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(93, 22);
 			this->exitToolStripMenuItem->Text = L"Exit";
 			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainWindow::exitToolStripMenuItem_Click);
 			// 
@@ -179,7 +179,7 @@ namespace ezyMoneda {
 			// aboutToolStripMenuItem
 			// 
 			this->aboutToolStripMenuItem->Name = L"aboutToolStripMenuItem";
-			this->aboutToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->aboutToolStripMenuItem->Size = System::Drawing::Size(171, 22);
 			this->aboutToolStripMenuItem->Text = L"About EzyMoneda";
 			this->aboutToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainWindow::aboutToolStripMenuItem_Click);
 			// 
@@ -274,7 +274,7 @@ namespace ezyMoneda {
 			// 
 			// textBox3
 			// 
-			this->textBox3->Location = System::Drawing::Point(175, 242);
+			this->textBox3->Location = System::Drawing::Point(156, 76);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(557, 31);
 			this->textBox3->TabIndex = 4;
@@ -282,7 +282,7 @@ namespace ezyMoneda {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(63, 244);
+			this->label5->Location = System::Drawing::Point(44, 78);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(106, 25);
 			this->label5->TabIndex = 3;
@@ -291,7 +291,7 @@ namespace ezyMoneda {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(63, 208);
+			this->label4->Location = System::Drawing::Point(44, 42);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(32, 25);
 			this->label4->TabIndex = 2;
@@ -299,7 +299,7 @@ namespace ezyMoneda {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(175, 205);
+			this->textBox2->Location = System::Drawing::Point(156, 39);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(557, 31);
 			this->textBox2->TabIndex = 1;
@@ -308,7 +308,7 @@ namespace ezyMoneda {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(632, 279);
+			this->button2->Location = System::Drawing::Point(613, 113);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(100, 42);
 			this->button2->TabIndex = 0;
