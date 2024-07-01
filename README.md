@@ -33,7 +33,7 @@ To run the simulator locally, follow these steps:
 
 ## Usage
 
-1. **Login:** Enter the account ID and password to access the syste(See [backend.h](blob/master/ezyMoneda/backend.h) for information about accounts).
+1. **Login:** Enter the account ID and password to access the syste(See [backend.h](ezyMoneda/backend.h) for information about accounts).
 
 2. **View Balance:** Once logged in, the system displays the account's current balance.
 
